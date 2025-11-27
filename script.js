@@ -1,12 +1,6 @@
-// ========================================
-// 🚀 ULTRA-MODERN PORTFOLIO JAVASCRIPT
-// Premium Interactive Features
-// Author: Allanazarov Daler
-// ========================================
 
 'use strict';
 
-// ===== DOM ELEMENTS =====
 const navbar = document.getElementById('navbar');
 const navMenu = document.getElementById('navMenu');
 const navLinks = document.querySelectorAll('.nav-link');
@@ -19,7 +13,6 @@ const filterBtns = document.querySelectorAll('.filter-btn');
 const portfolioCards = document.querySelectorAll('.portfolio-card');
 const skillProgressBars = document.querySelectorAll('.skill-progress');
 
-// ===== INITIALIZE ON LOAD =====
 document.addEventListener('DOMContentLoaded', () => {
     initializeApp();
     createParticles();
@@ -27,57 +20,40 @@ document.addEventListener('DOMContentLoaded', () => {
     animateSkillBars();
 });
 
-// ===== MAIN INITIALIZATION =====
 function initializeApp() {
-    // Load saved theme
     loadTheme();
     
-    // Set up event listeners
     setupEventListeners();
     
-    // Animate on scroll
     handleScroll();
     
-    // Add fade-in class to animated elements
     addFadeInClass();
     
-    console.log('%c🚀 Portfolio Loaded Successfully!', 
-        'color: #7FFF00; font-size: 20px; font-weight: bold;');
-    console.log('%c✨ Designed by Allanazarov Daler', 
-        'color: #32CD32; font-size: 14px;');
 }
 
-// ===== EVENT LISTENERS =====
 function setupEventListeners() {
-    // Scroll events
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('scroll', updateActiveNav);
     
-    // Navigation
     navLinks.forEach(link => {
         link.addEventListener('click', handleNavClick);
     });
     
-    // Mobile menu toggle
     if (mobileToggle) {
         mobileToggle.addEventListener('click', toggleMobileMenu);
     }
     
-    // Theme toggle
     if (themeToggle) {
         themeToggle.addEventListener('click', toggleTheme);
     }
     
-    // Back to top button
     if (backToTop) {
         backToTop.addEventListener('click', scrollToTop);
     }
     
-    // Contact form
     if (contactForm) {
         contactForm.addEventListener('submit', handleFormSubmit);
         
-        // Real-time validation
         const inputs = contactForm.querySelectorAll('input, textarea');
         inputs.forEach(input => {
             input.addEventListener('input', validateInput);
@@ -85,35 +61,29 @@ function setupEventListeners() {
         });
     }
     
-    // Portfolio filters
     filterBtns.forEach(btn => {
         btn.addEventListener('click', handleFilterClick);
     });
 }
 
-// ===== SCROLL HANDLING =====
 function handleScroll() {
     const scrollY = window.scrollY;
     
-    // Navbar scroll effect
     if (scrollY > 50) {
         navbar.classList.add('scrolled');
     } else {
         navbar.classList.remove('scrolled');
     }
     
-    // Back to top button
     if (scrollY > 400) {
         backToTop.classList.add('show');
     } else {
         backToTop.classList.remove('show');
     }
     
-    // Reveal animations
     revealOnScroll();
 }
 
-// ===== NAVIGATION =====
 function handleNavClick(e) {
     e.preventDefault();
     
@@ -121,25 +91,21 @@ function handleNavClick(e) {
     const targetSection = document.querySelector(targetId);
     
     if (targetSection) {
-        // Smooth scroll to section
         const offsetTop = targetSection.offsetTop - 80;
         window.scrollTo({
             top: offsetTop,
             behavior: 'smooth'
         });
         
-        // Close mobile menu if open
         if (navMenu.classList.contains('active')) {
             toggleMobileMenu();
         }
         
-        // Update active state
         navLinks.forEach(link => link.classList.remove('active'));
         this.classList.add('active');
     }
 }
 
-// Update active nav on scroll
 function updateActiveNav() {
     const scrollY = window.scrollY + 100;
     
@@ -159,26 +125,21 @@ function updateActiveNav() {
     });
 }
 
-// Mobile menu toggle
 function toggleMobileMenu() {
     navMenu.classList.toggle('active');
     mobileToggle.classList.toggle('active');
     document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
 }
 
-// ===== THEME TOGGLE =====
 function toggleTheme() {
     const body = document.body;
     const isDark = body.classList.toggle('dark-mode');
     
-    // Update icon
     const icon = themeToggle.querySelector('i');
     icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
     
-    // Save preference
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
     
-    // Add transition effect
     body.style.transition = 'background 0.5s ease, color 0.5s ease';
 }
 
@@ -193,7 +154,6 @@ function loadTheme() {
     }
 }
 
-// ===== BACK TO TOP =====
 function scrollToTop() {
     window.scrollTo({
         top: 0,
@@ -201,17 +161,14 @@ function scrollToTop() {
     });
 }
 
-// ===== FORM VALIDATION & SUBMISSION =====
 function handleFormSubmit(e) {
     e.preventDefault();
     
-    // Get form values
     const name = document.getElementById('name').value.trim();
     const email = document.getElementById('email').value.trim();
     const subject = document.getElementById('subject').value.trim();
     const message = document.getElementById('message').value.trim();
     
-    // Validation
     let isValid = true;
     let errors = [];
     
@@ -240,23 +197,18 @@ function handleFormSubmit(e) {
         return;
     }
     
-    // Success message
     showNotification('success', '✅ Xabaringiz muvaffaqiyatli yuborildi!\nTez orada siz bilan bog\'lanamiz.');
     
-    // Reset form
     contactForm.reset();
     
-    // Remove validation styles
     const inputs = contactForm.querySelectorAll('input, textarea');
     inputs.forEach(input => {
         input.style.borderColor = '';
     });
     
-    // Log form data (in real app, send to server)
     console.log('Form Data:', { name, email, subject, message });
 }
 
-// Real-time input validation
 function validateInput(e) {
     const input = e.target;
     const value = input.value.trim();
@@ -280,11 +232,9 @@ function validateInput(e) {
             break;
     }
     
-    // Update border color
     input.style.borderColor = value === '' ? '' : 
         isValid ? 'var(--lime-green)' : '#ff4444';
     
-    // Update icon color
     const icon = input.parentElement.querySelector('.input-icon');
     if (icon) {
         icon.style.color = value === '' ? '' : 
@@ -292,15 +242,12 @@ function validateInput(e) {
     }
 }
 
-// Email validation
 function isValidEmail(email) {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
 }
 
-// Notification system
 function showNotification(type, message) {
-    // Create notification element
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
     notification.style.cssText = `
@@ -325,7 +272,6 @@ function showNotification(type, message) {
     notification.textContent = message;
     document.body.appendChild(notification);
     
-    // Auto remove after 5 seconds
     setTimeout(() => {
         notification.style.animation = 'slideOutRight 0.5s ease';
         setTimeout(() => {
@@ -333,19 +279,15 @@ function showNotification(type, message) {
         }, 500);
     }, 5000);
     
-    // Also show browser alert
     alert(message);
 }
 
-// ===== PORTFOLIO FILTERS =====
 function handleFilterClick(e) {
     const filterValue = this.getAttribute('data-filter');
     
-    // Update active button
     filterBtns.forEach(btn => btn.classList.remove('active'));
     this.classList.add('active');
     
-    // Filter portfolio items
     portfolioCards.forEach(card => {
         const category = card.getAttribute('data-category');
         
@@ -365,7 +307,6 @@ function handleFilterClick(e) {
     });
 }
 
-// ===== SKILL BARS ANIMATION =====
 function animateSkillBars() {
     const observerOptions = {
         threshold: 0.5,
@@ -390,7 +331,6 @@ function animateSkillBars() {
     skillProgressBars.forEach(bar => observer.observe(bar));
 }
 
-// ===== SCROLL REVEAL ANIMATIONS =====
 function addFadeInClass() {
     const elements = document.querySelectorAll(`
         .about-card,
@@ -416,7 +356,6 @@ function revealOnScroll() {
     });
 }
 
-// ===== PARTICLES BACKGROUND =====
 function createParticles() {
     const particlesContainer = document.getElementById('particles');
     if (!particlesContainer) return;
@@ -450,7 +389,6 @@ function createParticles() {
     }
 }
 
-// ===== TYPING EFFECT (Optional Enhancement) =====
 function typeWriter(element, text, speed = 100) {
     let i = 0;
     element.textContent = '';
@@ -466,7 +404,6 @@ function typeWriter(element, text, speed = 100) {
     type();
 }
 
-// ===== SMOOTH SCROLL POLYFILL =====
 if (!('scrollBehavior' in document.documentElement.style)) {
     const smoothScrollPolyfill = () => {
         const links = document.querySelectorAll('a[href^="#"]');
@@ -483,7 +420,6 @@ if (!('scrollBehavior' in document.documentElement.style)) {
     smoothScrollPolyfill();
 }
 
-// ===== CURSOR GLOW EFFECT (Premium Feature) =====
 function initCursorGlow() {
     const cursor = document.createElement('div');
     cursor.className = 'cursor-glow';
@@ -505,25 +441,21 @@ function initCursorGlow() {
         cursor.style.top = e.clientY - 10 + 'px';
     });
     
-    // Hide on mobile
     if (window.innerWidth < 768) {
         cursor.style.display = 'none';
     }
 }
 
-// Initialize cursor glow on desktop
 if (window.innerWidth >= 768) {
     initCursorGlow();
 }
 
-// ===== PERFORMANCE MONITORING =====
 window.addEventListener('load', () => {
     const loadTime = performance.now();
     console.log(`%c⚡ Page loaded in ${Math.round(loadTime)}ms`, 
         'color: #7FFF00; font-weight: bold;');
 });
 
-// ===== CSS ANIMATIONS =====
 const style = document.createElement('style');
 style.textContent = `
     @keyframes slideInRight {
@@ -559,22 +491,17 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// ===== ACCESSIBILITY ENHANCEMENTS =====
-// Keyboard navigation support
 document.addEventListener('keydown', (e) => {
-    // ESC to close mobile menu
     if (e.key === 'Escape' && navMenu.classList.contains('active')) {
         toggleMobileMenu();
     }
     
-    // Space or Enter on theme toggle
     if ((e.key === ' ' || e.key === 'Enter') && e.target === themeToggle) {
         e.preventDefault();
         toggleTheme();
     }
 });
 
-// Add focus visible class for better keyboard navigation
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Tab') {
         document.body.classList.add('keyboard-nav');
@@ -585,25 +512,7 @@ document.addEventListener('mousedown', () => {
     document.body.classList.remove('keyboard-nav');
 });
 
-// ===== CONSOLE SIGNATURE =====
-console.log(`
-%c
-╔═══════════════════════════════════════╗
-║                                       ║
-║     🌟 ALLANAZAROV DALER 🌟          ║
-║     Portfolio Website v1.0            ║
-║                                       ║
-║     💻 Full Stack Developer           ║
-║     🎨 UI/UX Designer                 ║
-║     🚀 Innovation Enthusiast          ║
-║                                       ║
-║     📧 Contact:                       ║
-║     allanazarov.daler@example.com     ║
-║                                       ║
-╚═══════════════════════════════════════╝
-`, 'color: #7FFF00; font-weight: bold;');
 
-// ===== EXPORT FOR TESTING =====
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         isValidEmail,

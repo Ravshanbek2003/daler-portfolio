@@ -1,11 +1,4 @@
-/* ========================================
-   🎨 ULTRA-MODERN PORTFOLIO CSS
-   Premium Green-Yellow Gradient Design
-   Glassmorphism + Neomorphism Style
-   Author: Allanazarov Daler
-   ======================================== */
 
-/* ===== CSS VARIABLES - COLOR PALETTE ===== */
 :root {
     /* 🌿 Green-Yellow Gradient Colors */
     --green-yellow: #ADFF2F;           /* Green Yellow */
@@ -759,7 +752,6 @@ body {
     font-weight: 500;
 }
 
-/* ===== SECTION HEADER STYLES ===== */
 .section-header {
     text-align: center;
     margin-bottom: var(--spacing-2xl);
@@ -803,7 +795,6 @@ body {
     color: var(--text-secondary);
 }
 
-/* ===== ABOUT SECTION ===== */
 .about {
     padding: var(--spacing-2xl) 0;
     background: var(--bg-secondary);
@@ -902,7 +893,6 @@ body {
     color: var(--text-secondary);
 }
 
-/* ===== SKILLS SECTION ===== */
 .skills {
     padding: var(--spacing-2xl) 0;
 }
@@ -1015,7 +1005,6 @@ body {
     100% { transform: translateX(100%); }
 }
 
-/* Tech Stack */
 .tech-stack {
     text-align: center;
 }
@@ -1081,7 +1070,6 @@ body {
     opacity: 1;
 }
 
-/* ===== PORTFOLIO SECTION ===== */
 .portfolio {
     padding: var(--spacing-2xl) 0;
     background: var(--bg-secondary);
@@ -1268,7 +1256,6 @@ body {
     box-shadow: var(--glow-medium);
 }
 
-/* ===== CONTACT SECTION ===== */
 .contact {
     padding: var(--spacing-2xl) 0;
 }
